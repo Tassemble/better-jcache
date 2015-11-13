@@ -12,12 +12,6 @@ better-jcache is java cache framework bases on memcached that can easy write/rea
 Usage
 ---
 
-coming soon.
-
-
-Download
----
-
 In a Maven project include the dependency:
 ```
 <dependency>
@@ -26,13 +20,65 @@ In a Maven project include the dependency:
   <version>(insert latest version)</version>
 </dependency>
 ```
-
 Gradle example:
 ```
 compile 'org.betterjcode:better-jcache:0.1.+'
 ```
 
 
+Then, you should set up your memcached environment. For example, you deploy it in your local machine.
+
+You can just add the follow configs to your spring application context( for example applicationContext.xml).
+
+```
+        <bean id="memcachedClient" class="com.netease.edu.cache.impl.KeyPrefixSupportedMemcachedClientFactory">
+                <property name="servers" value="127.0.0.1:11211" />
+                <property name="protocol" value="BINARY" />
+                <property name="transcoder">
+                        <bean class="net.spy.memcached.transcoders.SerializingTranscoder">
+                                <property name="compressionThreshold" value="16384" />
+                        </bean>
+                </property>
+                <property name="maxReconnectDelay" value="60" />
+                <property name="opTimeout" value="10000" />
+                <property name="timeoutExceptionThreshold" value="900" />
+                <property name="hashAlg">
+                   <value type="net.spy.memcached.DefaultHashAlgorithm">KETAMA_HASH</value>
+                </property>
+                <property name="locatorType" value="CONSISTENT" />
+                <property name="failureMode" value="Redistribute" />
+                <property name="useNagleAlgorithm" value="false" />
+        </bean>
+        <bean class="CachedWithAssignedKeyAdvice" >
+        	<property name="memcachedClient" ref="memcachedClient" />
+        </bean>
+        <bean class="CachedWithAssignedKeyAdvice" >
+        	<property name="memcachedClient" ref="memcachedClient" />
+        </bean>
+```
+
+after these configures, you can use @CachedWithAssignedKeyAdvice and @InvalidateCacheAfterUpdateAdvice in your public methods.
+
+For example:
+```
+@AssignedCache(namespace = "common-kv")
+public String obtain(@ValueAsCacheKey String name) {
+	return commonLogic.obtain(name);
+}
+```
+this means when the obtain method is called, the return value will be cached in memcached. Next time, the method is called again with the same name,  a value will get from memcached .
+
+```
+@InvalidateAssignedCache(namespace = "common-kv")
+public String set(String name) {
+	return commonLogic.set(name);
+}
+```
+this means when the set method is called, all the cached value using namespace common-kv will invalidate.
+
+there are more advance features you can try, like  annotation @ValueAsPartialNamespace @PropertyAsPartialNamespace, these two can get value from parameter, and treat them as part of namespace in the runtime. Just try it.
+
+And don't forget to change the property(servers) in the product environment. 
 
 
 FAQ
