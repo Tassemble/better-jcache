@@ -49,15 +49,15 @@ You can just add the follow configs to your spring application context( for exam
         <property name="failureMode" value="Redistribute" />
         <property name="useNagleAlgorithm" value="false" />
 </bean>
-<bean class="CachedWithAssignedKeyAdvice" >
+<bean class="org.betterbench.cache.aop.advice.CachedWithAssignedKeyAdvice" >
 	<property name="memcachedClient" ref="memcachedClient" />
 </bean>
-<bean class="CachedWithAssignedKeyAdvice" >
+<bean class="org.betterbench.cache.aop.advice.InvalidateCacheAfterUpdateAdvice" >
 	<property name="memcachedClient" ref="memcachedClient" />
 </bean>
 ```
 
-after these configures, you can use @CachedWithAssignedKeyAdvice and @InvalidateCacheAfterUpdateAdvice in your public methods.
+after these configures, you can use @AssignedCache and @InvalidateAssignedCache in your public methods.
 
 For example:
 ```
