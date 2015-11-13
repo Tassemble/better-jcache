@@ -1,6 +1,6 @@
 # better-jcache
 
-better-jcache is flexible java cache framework bases on memcached that can easy write/read cache with flexible ways, such as annotation. The main idea is to write java code more fast, more convenient, more productivity.
+better-jcache is java cache framework bases on memcached that can easy write/read cache with flexible ways, such as annotation. The main idea is to write java code more fast, more convenient, more productivity.
 
 **features:**
 * namespace is supported based on memcached.
