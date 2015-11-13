@@ -2,11 +2,11 @@
 
 better-jcache is flexible java cache framework bases on memcached that can easy write/read cache with flexible ways, such as annotation. The main idea is to write java code more fast, more convenient, more productivity.
 
-features:
-1. namespace is supported based on memcached.
-2. annotation is supported for cache or invalidate cache object.
-3. namepsace can be assigned in the runtime using @ValueAsPartialNamespace or @PropertyAsPartialNamespace
-4. the consist of the key is flexible to assigned , you can specific one variable、multi variables、several properties from object or any of these three together.
+**features:**
+* namespace is supported based on memcached.
+* annotation is supported for cache or invalidate cache object.
+* namepsace can be assigned in the runtime using @ValueAsPartialNamespace or @PropertyAsPartialNamespace
+* the consist of the key is flexible to assigned , you can specific one variable、multi variables、several properties from object or any of these three together.
 
 
 Usage
