@@ -15,14 +15,14 @@ Usage
 In a Maven project include the dependency:
 ```
 <dependency>
-  <groupId>org.netease</groupId>
+  <groupId>com.netease</groupId>
   <artifactId>better-jcache</artifactId>
   <version>(insert latest version)</version>
 </dependency>
 ```
 or Gradle example:
 ```
-compile 'org.betterjcode:better-jcache:0.1.+'
+compile 'com.netease:better-jcache:0.1.+'
 ```
 
 
