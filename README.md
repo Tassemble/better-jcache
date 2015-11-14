@@ -15,7 +15,7 @@ Usage
 In a Maven project include the dependency:
 ```
 <dependency>
-  <groupId>org.betterbench</groupId>
+  <groupId>org.netease</groupId>
   <artifactId>better-jcache</artifactId>
   <version>(insert latest version)</version>
 </dependency>
@@ -49,10 +49,10 @@ You can just add the follow configs to your spring application context( for exam
         <property name="failureMode" value="Redistribute" />
         <property name="useNagleAlgorithm" value="false" />
 </bean>
-<bean class="org.betterbench.cache.aop.advice.CachedWithAssignedKeyAdvice" >
+<bean class="org.netease.cache.aop.advice.CachedWithAssignedKeyAdvice" >
 	<property name="memcachedClient" ref="memcachedClient" />
 </bean>
-<bean class="org.betterbench.cache.aop.advice.InvalidateCacheAfterUpdateAdvice" >
+<bean class="org.netease.cache.aop.advice.InvalidateCacheAfterUpdateAdvice" >
 	<property name="memcachedClient" ref="memcachedClient" />
 </bean>
 ```
@@ -96,7 +96,7 @@ License
 ---
 
 ```
-Copyright (C) 2015 CHQ <tassemble@gmail.com>
+Copyright (C) 2015 NETEASE.CORP
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
